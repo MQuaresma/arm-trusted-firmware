@@ -782,6 +782,10 @@ else
         endif
 endif
 
+ifdef CFG_DEVICE_ATTESTATION
+        $(eval $(call add_define,CFG_DEVICE_ATTESTATION))
+endif
+
 # Define the DYN_DISABLE_AUTH flag only if set.
 ifeq (${DYN_DISABLE_AUTH},1)
 $(eval $(call add_define,DYN_DISABLE_AUTH))

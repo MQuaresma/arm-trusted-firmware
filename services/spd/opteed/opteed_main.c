@@ -167,6 +167,11 @@ static int32_t opteed_init(void)
 	optee_entry_point = bl31_plat_get_next_image_ep_info(SECURE);
 	assert(optee_entry_point);
 
+#ifdef CFG_DEVICE_ATTESTATION
+	//TODO: load certificate and pass address;
+	optee_entry_point->args.arg3 = 0x1337;
+#endif
+
 	cm_init_my_context(optee_entry_point);
 
 	/*
