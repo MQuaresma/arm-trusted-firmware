@@ -264,6 +264,13 @@ int plat_set_nv_ctr2(void *cookie, const struct auth_img_desc_s *img_desc,
 int get_mbedtls_heap_helper(void **heap_addr, size_t *heap_size);
 
 /*******************************************************************************
+ * Attestated computation certificate functions
+ * TODO: require TBB to enabled in future versions
+ ******************************************************************************/
+int plat_get_device_cert(void **cert_ptr, unsigned int *key_len);
+
+
+/*******************************************************************************
  * Secure Partitions functions
  ******************************************************************************/
 const struct mmap_region *plat_get_secure_partition_mmap(void *cookie);

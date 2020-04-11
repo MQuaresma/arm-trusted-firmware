@@ -168,8 +168,14 @@ static int32_t opteed_init(void)
 	assert(optee_entry_point);
 
 #ifdef CFG_DEVICE_ATTESTATION
-	//TODO: load certificate and pass address;
-	optee_entry_point->args.arg3 = 0x1337;
+	void *dev_cert = NULL;
+	unsigned int cert_len = 0; //ignoring for now
+	rc = plat_get_device_cert(&dev_cert, &cert_len);
+
+	assert(rc == 0);
+
+	optee_entry_point->args.arg3 = (uint64_t) dev_cert;
+	optee_entry_point->args.arg4 = cert_len;
 #endif
 
 	cm_init_my_context(optee_entry_point);

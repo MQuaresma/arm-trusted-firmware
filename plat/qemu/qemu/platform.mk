@@ -168,6 +168,10 @@ ifneq ($(BL32_EXTRA2),)
 $(eval $(call TOOL_ADD_IMG,bl32_extra2,--tos-fw-extra2))
 endif
 
+ifneq ($(CFG_DEVICE_ATTESTATION),)
+BL31_SOURCES	+= ${PLAT_QEMU_COMMON_PATH}/qemu_acc.c
+endif
+
 SEPARATE_CODE_AND_RODATA := 1
 ENABLE_STACK_PROTECTOR	 := 0
 ifneq ($(ENABLE_STACK_PROTECTOR), 0)
