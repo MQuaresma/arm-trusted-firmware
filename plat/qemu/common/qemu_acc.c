@@ -30,9 +30,9 @@ int plat_get_device_cert(void **cert_ptr, unsigned int *cert_len){
     assert(cert_ptr != NULL);
     assert(cert_len != NULL);
 
-	//FIXME: OPTEE can't access this address
+	*cert_len = sizeof(device_cert_der);
     *cert_ptr = (void *)device_cert_der;
-    *cert_len = sizeof(device_cert_der);
+
     return 0;
 }
 
