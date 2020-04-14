@@ -267,7 +267,8 @@ int get_mbedtls_heap_helper(void **heap_addr, size_t *heap_size);
  * Attestated computation certificate functions
  * TODO: require TBB to enabled in future versions
  ******************************************************************************/
-int plat_get_device_cert(void **cert_ptr, unsigned int *key_len);
+int plat_get_device_cert(void **dc_ptr, unsigned int *dc_len);
+int plat_get_dck_blob(void **dck_ptr, unsigned int *dc_len, unsigned int *ak_len);
 
 
 /*******************************************************************************

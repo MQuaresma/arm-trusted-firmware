@@ -168,14 +168,16 @@ static int32_t opteed_init(void)
 	assert(optee_entry_point);
 
 #ifdef CFG_DEVICE_ATTESTATION
-	void *dev_cert = NULL;
-	unsigned int cert_len = 0; //ignoring for now
-	rc = plat_get_device_cert(&dev_cert, &cert_len);
+	void *dck_blob = NULL;
+	unsigned int dc_len = 0;
+	unsigned int ak_len = 0;
+	rc = plat_get_dck_blob(&dck_blob, &dc_len, &ak_len);
 
 	assert(rc == 0);
 
-	optee_entry_point->args.arg3 = (uint64_t) dev_cert;
-	optee_entry_point->args.arg4 = cert_len;
+	optee_entry_point->args.arg3 = (uint64_t) dck_blob;
+	optee_entry_point->args.arg4 = dc_len;
+	optee_entry_point->args.arg5 = ak_len;
 #endif
 
 	cm_init_my_context(optee_entry_point);
