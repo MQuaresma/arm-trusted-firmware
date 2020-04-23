@@ -172,6 +172,8 @@ static int32_t opteed_init(void)
 	unsigned int dc_len = 0;
 	unsigned int ak_len = 0;
 	rc = plat_get_dck_blob(&dck_blob, &dc_len, &ak_len);
+    if(rc)
+        WARN("Failed to fetch the attestation material\n");
 
 	assert(rc == 0);
 
