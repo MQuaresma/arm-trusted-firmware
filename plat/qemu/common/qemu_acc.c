@@ -4,7 +4,7 @@
 #include <plat/common/platform.h>
 #include <platform_def.h>
 
-static unsigned char dc_der[] = \
+static unsigned char dc_blob[] = \
     "\x30\x82\x01\xdd\x30\x82\x01\x81\xa0\x03\x02\x01\x02\x02" \
     "\x09\x00\xbb\xdf\xa0\x4f\x34\x9a\xac\x4a\x30\x0c\x06\x08" \
     "\x2a\x86\x48\xce\x3d\x04\x03\x02\x05\x00\x30\x36\x31\x0b" \
@@ -102,31 +102,31 @@ int plat_get_device_cert(void **dc_ptr, unsigned int *dc_len){
     assert(dc_ptr != NULL);
     assert(dc_len != NULL);
 
-    *dc_ptr = (void *)dc_der;
-	*dc_len = sizeof(dc_der) - 1;
+    *dc_ptr = (void *)dc_blob;
+    *dc_len = sizeof(dc_blob) - 1;
 
     return 0;
 }
 
 int plat_get_acc_key(void **ak_ptr, unsigned int *ak_len){
-	assert(ak_ptr != NULL);
-	assert(ak_len != NULL);
+    assert(ak_ptr != NULL);
+    assert(ak_len != NULL);
 
-	*ak_ptr = (void *)ak_blob;
-	*ak_len = sizeof(ak_blob) - 1;
+    *ak_ptr = (void *)ak_blob;
+    *ak_len = sizeof(ak_blob) - 1;
 
-	return 0;
+    return 0;
 }
 
 
 int plat_get_dck_blob(void **dck_ptr, unsigned int *dc_len, unsigned int *ak_len){
     assert(dck_ptr != NULL);
     assert(dc_len != NULL);
-	assert(ak_len != NULL);
+    assert(ak_len != NULL);
 
     *dck_ptr = (void *)dck_blob;
-	*dc_len = sizeof(dc_der) - 1;
-	*ak_len = (sizeof(ak_blob) - 1)/3;
+    *dc_len = sizeof(dc_blob) - 1;
+    *ak_len = sizeof(ak_blob) - 1;
 
     return 0;
 }
