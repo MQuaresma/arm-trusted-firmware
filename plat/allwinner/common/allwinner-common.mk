@@ -35,6 +35,10 @@ BL31_SOURCES		+=	drivers/arm/gic/common/gic_common.c	\
 				${AW_PLAT}/common/sunxi_security.c	\
 				${AW_PLAT}/common/sunxi_topology.c
 
+ifneq ($(CFG_DEVICE_ATTESTATION),)
+BL31_SOURCES	+= ${AW_PLAT}/common/sunxi_acc.c
+endif
+
 # The bootloader is guaranteed to only run on CPU 0 by the boot ROM.
 COLD_BOOT_SINGLE_CPU		:=	1
 
